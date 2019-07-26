@@ -1,6 +1,6 @@
 [package]
 name = "wgpu"
-version = "0.2.2"
+version = "0.3.0"
 authors = [
 	"Dzmitry Malyshau <kvark@mozilla.com>",
 	"Joshua Groves <josh@joshgroves.com>",
@@ -24,7 +24,7 @@ gl = ["wgn/gfx-backend-gl"]
 
 [dependencies]
 #TODO: only depend on the published version
-wgn = { package = "wgpu-native", version = "0.2.6", features = ["local", "window-winit"], git = "https://github.com/gfx-rs/wgpu", rev = "32399cff8a0b55389f2d2493ea5c900c986c2547" }
+wgn = { package = "wgpu-native", version = "0.2.6", features = ["local", "window-winit"], git = "https://github.com/m4b/wgpu", rev = "9d4dd6587989ef4f297cad321f6acb7b575d6682" }
 arrayvec = "0.4"
 
 [dev-dependencies]
@@ -33,3 +33,6 @@ env_logger = "0.6"
 glsl-to-spirv = "0.1"
 log = "0.4"
 png = "0.15"
+
+[patch.crates-io]
+gfx-hal = { git = "https://github.com/gfx-rs/gfx", rev = "cc6a04933082685521482faf5bc38d69e1b70f2e" }

@@ -80,8 +80,9 @@ pub fn run<E: Example>(title: &str) {
     #[cfg(feature = "gl")]
     let (instance, hidpi_factor, size, surface) = {
         let wb = wgpu::winit::WindowBuilder::new();
-        let cb = wgpu::glutin::ContextBuilder::new().with_vsync(true);
-        let context = wgpu::glutin::WindowedContext::new_windowed(wb, cb, &events_loop).unwrap();
+        let context = wgpu::glutin::ContextBuilder::new()
+            .with_vsync(true)
+            .build_windowed(wb, &events_loop).unwrap();
         context.window().set_title(title);
 
         let hidpi_factor = context.window().get_hidpi_factor();
@@ -90,7 +91,7 @@ pub fn run<E: Example>(title: &str) {
             .get_inner_size()
             .unwrap()
             .to_physical(hidpi_factor);
-
+        let context = unsafe { context.make_current().expect("Failed to make the context current") };
         let instance = wgpu::Instance::new(context);
         let surface = instance.get_surface();
 

@@ -32,15 +32,18 @@ fn main() {
     #[cfg(feature = "gl")]
     let (instance, size, surface) = {
         let wb = wgpu::winit::WindowBuilder::new();
-        let cb = wgpu::glutin::ContextBuilder::new().with_vsync(true);
-        let context = wgpu::glutin::WindowedContext::new_windowed(wb, cb, &events_loop).unwrap();
+        let context = wgpu::glutin::ContextBuilder::new()
+            .with_vsync(true)
+            .build_windowed(wb, &events_loop).unwrap();
+        context.window().set_title("hello-triangle");
 
+        let hidpi_factor = context.window().get_hidpi_factor();
         let size = context
             .window()
             .get_inner_size()
             .unwrap()
-            .to_physical(context.window().get_hidpi_factor());
-
+            .to_physical(hidpi_factor);
+        let context = unsafe { context.make_current().expect("Failed to make the context current") };
         let instance = wgpu::Instance::new(context);
         let surface = instance.get_surface();
 
