@@ -1,6 +1,6 @@
 [package]
 name = "wgpu"
-version = "0.3.0"
+version = "0.4.0"
 authors = [
 	"Dzmitry Malyshau <kvark@mozilla.com>",
 	"Joshua Groves <josh@joshgroves.com>",
@@ -23,7 +23,7 @@ default = []
 vulkan = ["wgn/gfx-backend-vulkan"]
 
 [dependencies]
-wgn = { package = "wgpu-native", git = "https://github.com/gfx-rs/wgpu", rev = "78fbbba5e928e4a6f15a03a1c04d06916a947673" }
+wgn = { package = "wgpu-native", git = "https://github.com/m4b/wgpu", rev = "8655f1bd1d909111d8f22bc2ca49964882148b4d" }
 arrayvec = "0.5"
 raw-window-handle = "0.3"
 zerocopy = "0.2"
